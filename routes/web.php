@@ -4,6 +4,7 @@ use App\Http\Controllers\FormController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormValidationController;
+use App\Http\Controllers\StudentController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -38,3 +39,17 @@ Route::post('/adduser', [FormController::class, 'addUser'])->name('adduser');
 Route::view('/formvalid', 'form-validation');
 
 Route::post('/formdata', [FormValidationController::class, 'formData'])->name('formdata');
+
+// Routes Groups 
+
+Route::prefix('student')->group(function() {
+    Route::view('/home', 'home');
+    Route::get('/add', [StudentController::class, 'add']);
+    Route::get('/detail', [StudentController::class, 'get' ]);
+});
+
+Route::prefix('student/ind')->group(function() {
+    Route::view('/home', 'home');
+    Route::get('/get', [StudentController::class, 'add']);
+    Route::get('/details', [StudentController::class], 'get');
+});
