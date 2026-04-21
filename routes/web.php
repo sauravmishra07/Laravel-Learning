@@ -3,6 +3,7 @@
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FormValidationController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,3 +34,7 @@ Route::view('/signup', 'signup');
 Route::view('/userform', 'user-form');
 
 Route::post('/adduser', [FormController::class, 'addUser'])->name('adduser');
+
+Route::view('/formvalid', 'form-validation');
+
+Route::post('/formdata', [FormValidationController::class, 'formData'])->name('formdata');
