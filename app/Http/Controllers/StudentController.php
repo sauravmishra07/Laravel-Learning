@@ -13,4 +13,12 @@ class StudentController extends Controller
     function get() {
         return 'studentdetail';
     }
+
+    function show() {
+        return 'ShowDetailsSudents';
+    }
+
+    function delete() {
+        return 'deletestudents';
+    }
 }

@@ -53,3 +53,11 @@ Route::prefix('student/ind')->group(function() {
     Route::get('/get', [StudentController::class, 'add']);
     Route::get('/details', [StudentController::class], 'get');
 });
+
+// Routes Group For Controllers
+
+Route::controller(StudentController::class)->group(function() {
+    Route::get('add', 'add');
+    Route::get('show', 'show');
+    Route::get('delete', 'delete');
+});
