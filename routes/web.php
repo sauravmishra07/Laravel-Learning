@@ -1,63 +1,20 @@
 <?php
 
-use App\Http\Controllers\FormController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FormValidationController;
-use App\Http\Controllers\StudentController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/home', function() {
-//     return ('hello form webserver articen');
-// });
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::redirect('/home', '/');
-
-Route::get('/product/{productName}', function ($productName) {
-    return view('product', ['Name' => $productName]);
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/payment', function () {
-    return 'this is the paymment page';
-});
-
-Route::get('/cart', function () {
-    return 'this is cart page';
-});
-
-Route::get('/products/{name}', [ProductController::class, 'getProduct']);
-
-Route::view('/signup', 'signup');
-
-Route::view('/userform', 'user-form');
-
-Route::post('/adduser', [FormController::class, 'addUser'])->name('adduser');
-
-Route::view('/formvalid', 'form-validation');
-
-Route::post('/formdata', [FormValidationController::class, 'formData'])->name('formdata');
-
-// Routes Groups 
-
-Route::prefix('student')->group(function() {
-    Route::view('/home', 'home');
-    Route::get('/add', [StudentController::class, 'add']);
-    Route::get('/detail', [StudentController::class, 'get' ]);
-});
-
-Route::prefix('student/ind')->group(function() {
-    Route::view('/home', 'home');
-    Route::get('/get', [StudentController::class, 'add']);
-    Route::get('/details', [StudentController::class], 'get');
-});
-
-// Routes Group For Controllers
-
-Route::controller(StudentController::class)->group(function() {
-    Route::get('add', 'add');
-    Route::get('show', 'show');
-    Route::get('delete', 'delete');
-});
+require __DIR__.'/auth.php';
