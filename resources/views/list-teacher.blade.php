@@ -1,7 +1,32 @@
 <div
     style="padding: 20px; font-family: Arial, sans-serif; background-color: #f4f6f9; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
     <h1 style="text-align: center; color: #2C3E50; margin-bottom: 20px;">List All Teachers</h1>
+    <form action="search" method="get" style="display: flex; justify-content: center; margin-top: 20px;">
 
+        <div
+            style="display: flex; gap: 10px; background: #fff; padding: 10px;
+                border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+
+            <input type="text" placeholder="Search teacher by name..." name="search" value="{{ @$search }}"
+                style="padding: 10px 14px; width: 250px;
+                   border: 1px solid #ccc; border-radius: 6px;
+                   outline: none; font-size: 14px;
+                   transition: 0.3s;">
+
+            <button type="submit"
+                style="padding: 10px 18px;
+                   background-color: #3498db;
+                   color: white;
+                   border: none;
+                   border-radius: 6px;
+                   font-weight: bold;
+                   cursor: pointer;
+                   transition: 0.3s;">
+                Search
+            </button>
+
+        </div>
+    </form>
     <table
         style="width: 100%; border-collapse: collapse; margin-top: 20px; border-radius: 8px; overflow: hidden; background-color: white;">
         <thead>
@@ -20,7 +45,7 @@
                     <td style="padding: 10px; text-align: left;">{{ $teacher->email }}</td>
                     <td style="padding: 10px; text-align: left;">{{ $teacher->phone }}</td>
                     <td style="padding: 10px; text-align: left;">{{ $teacher->created_at }}</td>
-                    <<td style="padding: 10px; text-align: left;">
+                    <td style="padding: 10px; text-align: left;">
                         <!-- Delete Button -->
                         <a href="{{ 'delete/' . $teacher->id }}"
                             style="text-decoration: none; color: white; background-color: #e74c3c; padding: 10px 20px; border-radius: 5px; font-weight: bold; 
@@ -38,7 +63,7 @@
                         </a>
                         </td>
 
-                        
+
                 </tr>
             @endforeach
         </tbody>

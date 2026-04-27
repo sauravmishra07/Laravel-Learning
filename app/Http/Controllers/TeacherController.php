@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\teacher;
+use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
-    function addteacher(Request $request) {
+    public function addteacher(Request $request)
+    {
         // Create a new teacher record
-        $teacher = new Teacher();
+        $teacher = new teacher;
         $teacher->name = $request->name;
         $teacher->email = $request->email;
         $teacher->phone = $request->phone;
@@ -22,33 +23,48 @@ class TeacherController extends Controller
         }
     }
 
-    function getTeacher() {
-        $teacherData = Teacher::all();
+    public function getTeacher()
+    {
+        $teacherData = teacher::all();
 
         return view('list-teacher', ['Teachers' => $teacherData]);
     }
 
-    function delete($id) {
-        $isDeleted=Teacher::destroy($id);
-        if($isDeleted) {
+    public function delete($id)
+    {
+        $isDeleted = teacher::destroy($id);
+        if ($isDeleted) {
             return redirect('list');
         }
     }
 
-    function edit($id)
+    public function edit($id)
     {
-        $teacher = Teacher::find($id);
+        $teacher = teacher::find($id);
+
         return view('edit-teacher', ['data' => $teacher]);
     }
 
     public function update(Request $request, $id)
-{
-    $teacher = Teacher::find($id);
-    $teacher->name = $request->name;
-    $teacher->email = $request->email;
-    $teacher->phone = $request->phone;
-    $teacher->save();
+    {
+        $teacher = teacher::find($id);
+        $teacher->name = $request->name;
+        $teacher->email = $request->email;
+        $teacher->phone = $request->phone;
+        $teacher->save();
 
-    return redirect('list')->with('success', 'Teacher updated successfully!');
-}
+        return redirect('list')->with('success', 'Teacher updated successfully!');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+
+        $teacherData = teacher::where('name', 'like', "%{$search}%")->get();
+
+        return view('list-teacher', [
+            'Teachers' => $teacherData,
+            'search' => $search,
+        ]);
+    }
 }
