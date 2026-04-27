@@ -26,3 +26,9 @@ Route::view('add-teacher', 'add-teacher');
 Route::post('add-teacher', [TeacherController::class, 'addTeacher']);
 
 Route::get('list', [TeacherController::class, 'getTeacher']);
+
+Route::get('delete/{id}', [TeacherController::class, 'delete']);
+
+Route::get('edit/{id}', [TeacherController::class, 'edit']);
+
+Route::put('update/{id}', [TeacherController::class, 'update'])->name('teacher.update');
