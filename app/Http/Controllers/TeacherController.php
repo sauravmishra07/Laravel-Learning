@@ -67,4 +67,13 @@ class TeacherController extends Controller
             'search' => $search,
         ]);
     }
+
+    public function deleteMultiple(Request $request)
+{
+    if ($request->ids) {
+        Teacher::whereIn('id', $request->ids)->delete();
+    }
+
+    return redirect('list')->with('success', 'Selected teachers deleted successfully');
+}
 }

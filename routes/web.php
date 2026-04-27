@@ -34,3 +34,5 @@ Route::get('edit/{id}', [TeacherController::class, 'edit']);
 Route::put('update/{id}', [TeacherController::class, 'update'])->name('teacher.update');
 
 Route::get('search', [TeacherController::class, 'search']);
+
+Route::post('delete-multiple', [TeacherController::class, 'deleteMultiple']);
