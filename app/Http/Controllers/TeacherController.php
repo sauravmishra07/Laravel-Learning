@@ -25,7 +25,7 @@ class TeacherController extends Controller
 
     public function getTeacher()
     {
-        $teacherData = teacher::all();
+        $teacherData = teacher::paginate(6);
 
         return view('list-teacher', ['Teachers' => $teacherData]);
     }

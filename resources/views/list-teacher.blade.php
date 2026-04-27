@@ -68,10 +68,47 @@
             @endforeach
         </tbody>
     </table>
+   <div style="display:flex; justify-content:center; margin-top:20px;">
+    {{ $Teachers->links() }}
+</div>
 </div>
 
 <!-- Add a responsive design for small screens -->
 <style>
+   .w-5.h-5 {
+        width: 18px;
+        height: 18px;
+    }
+
+    /* Optional improvement for pagination links */
+    .pagination {
+        display: flex;
+        gap: 5px;
+        list-style: none;
+        padding: 0;
+    }
+
+    .pagination li {
+        padding: 6px 10px;
+        border-radius: 6px;
+    }
+
+    .pagination li a,
+    .pagination li span {
+        text-decoration: none;
+        color: #2c3e50;
+    }
+
+    .pagination .active span {
+        background: #3498db;
+        color: white;
+        padding: 6px 10px;
+        border-radius: 6px;
+    }
+
+    .pagination li:hover {
+        background: #ecf0f1;
+    }
     @media (max-width: 768px) {
 
         table,
