@@ -24,3 +24,5 @@ Route::view('don', 'product');
 Route::view('add-teacher', 'add-teacher');
 
 Route::post('add-teacher', [TeacherController::class, 'addTeacher']);
+
+Route::get('list', [TeacherController::class, 'getTeacher']);

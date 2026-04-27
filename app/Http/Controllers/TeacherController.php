@@ -21,4 +21,10 @@ class TeacherController extends Controller
             return 'Error occurred while adding data to the database';
         }
     }
+
+    function getTeacher() {
+        $teacherData = Teacher::all();
+
+        return view('list-teacher', ['Teachers' => $teacherData]);
+    }
 }
