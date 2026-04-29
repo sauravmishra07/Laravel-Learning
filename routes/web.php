@@ -38,4 +38,10 @@ Route::get('search', [TeacherController::class, 'search']);
 
 Route::post('delete-multiple', [TeacherController::class, 'deleteMultiple']);
 
+Route::get('/mail', [MailController::class, 'sendMail']);
+
 Route::view('/string', 'fluentstring');
+
+Route::get('/laravel-quiz', function () {
+    return view('quiz');
+});
