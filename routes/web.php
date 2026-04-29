@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\MailController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -36,3 +37,5 @@ Route::put('update/{id}', [TeacherController::class, 'update'])->name('teacher.u
 Route::get('search', [TeacherController::class, 'search']);
 
 Route::post('delete-multiple', [TeacherController::class, 'deleteMultiple']);
+
+Route::view('/string', 'fluentstring');
